@@ -15,13 +15,6 @@ today = now.strftime("%m%d%Y")
 while x <= int(y): #specify number of times to run process
     em = Emulator(visible=True)
     
-    def logout ():
-        em.fill_field(23, 13, 'smsf', 4)
-        em.send_enter()
-        em.send_enter()
-
-
-
     startNum = 'A'+str(rn)
     caseNum = ws1[startNum].value
     caseNum = str(caseNum)
@@ -49,11 +42,8 @@ while x <= int(y): #specify number of times to run process
     em.fill_field(8, 35, 'DE', 2)
     em.fill_field(9, 35, 'DE', 2)
     em.fill_field(10, 35, 'DE', 2)
-    em.fill_field(11, 35, 'DE', 2)
-    em.fill_field(12, 35, 'DE', 2)
-    em.fill_field(13, 35, 'DE', 2)
-    em.fill_field(13, 42, '374', 3)
-    em.fill_field(13, 72, 'Y', 1)
+    em.fill_field(10, 42, '374', 3)
+    em.fill_field(10, 72, 'Y', 1)
     em.send_enter()
     em.wait_for_field()
     em.send_enter()
@@ -61,9 +51,10 @@ while x <= int(y): #specify number of times to run process
     em.fill_field(23, 29, caseNum, 10)
     em.send_enter()
     em.exec_command(b'PF(9)')
-    em.fill_field(8, 18, "IRMA DSNAP CASE CLOSED, NOT IN DISASTER AREA.", 45)
+    em.fill_field(8, 18, "IRMA DSNAP CASE DENIED, CASE NOT PREVIOUSLY DISPOSED.", 53)
     em.send_enter()
-    logout()
+    em.exec_command(b'PF(13)')
+    em.send_enter()
     em.terminate()
     rn += 1
     print(rn)

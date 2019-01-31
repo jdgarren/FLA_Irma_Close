@@ -21,6 +21,7 @@ while x <= int(y): #specify number of times to run process
         em.send_enter()
 
 
+
     startNum = 'A'+str(rn)
     caseNum = ws1[startNum].value
     caseNum = str(caseNum)
@@ -55,6 +56,12 @@ while x <= int(y): #specify number of times to run process
     em.fill_field(13, 72, 'Y', 1)
     em.send_enter()
     em.wait_for_field()
+    em.send_enter()
+    em.fill_field(23, 13, 'CLRC', 4)
+    em.fill_field(23, 29, caseNum, 10)
+    em.send_enter()
+    em.exec_command(b'PF(9)')
+    em.fill_field(8, 18, "IRMA DSNAP CASE CLOSED, NOT IN DISASTER AREA.", 45)
     em.send_enter()
     logout()
     em.terminate()
